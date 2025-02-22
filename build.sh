@@ -1,17 +1,13 @@
 #!/bin/bash
-
 set -ouex pipefail
 
 ### Install packages
-
 # Packages can be installed from any enabled yum repo on the image.
 # RPMfusion repos are available by default in ublue main images
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
-
 # this installs a package from fedora repos
-dnf install -y tmux 
-
+# dnf install -y tmux
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
@@ -19,6 +15,22 @@ dnf install -y tmux
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-#### Example for enabling a System Unit File
+echo "::group:: ===Install packages==="
+/ctx/packages.sh
+echo "::endgroup::"
 
-systemctl enable podman.socket
+echo "::group:: ===Cleanup==="
+repos=(
+    google-chrome.repo
+    vscode.repo
+)
+
+for repo in "${repos[@]}"; do
+    if [[ -f "/etc/yum.repos.d/$repo" ]]; then
+        sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/$repo"
+    fi
+done
+
+dnf5 clean all
+bootc container lint
+echo "::endgroup::"
