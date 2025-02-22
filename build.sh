@@ -16,7 +16,6 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 echo "::group:: ===Install packages==="
-
 # Google-chrome
 mv /opt{,.bak}
 mkdir /opt
@@ -35,7 +34,6 @@ mv /opt{.bak,}
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e '[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc' | tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf5 install -y code
-
 echo "::endgroup::"
 
 echo "::group:: ===Cleanup==="
