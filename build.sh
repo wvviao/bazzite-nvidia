@@ -16,7 +16,7 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 echo "::group:: ===Install packages==="
-/ctx/packages.sh
+chmod +x /ctx/packages.sh && /ctx/packages.sh
 echo "::endgroup::"
 
 echo "::group:: ===Cleanup==="
