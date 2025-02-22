@@ -32,5 +32,5 @@ for repo in "${repos[@]}"; do
 done
 
 dnf5 clean all
-bootc container lint
+ostree container commit
 echo "::endgroup::"

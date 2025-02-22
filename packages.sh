@@ -14,7 +14,6 @@ done
 rm -rf /etc/cron.daily
 rmdir /opt/{google,}
 mv /opt{.bak,}
-dnf5 clean all
 
 # Vscode
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
