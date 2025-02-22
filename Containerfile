@@ -1,7 +1,3 @@
-FROM scratch AS ctx
-COPY / /
-FROM ghcr.io/ublue-os/bazzite-nvidia:stable
-
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:stable
 # FROM ghcr.io/ublue-os/bluefin-nvidia:stable
@@ -14,6 +10,11 @@ FROM ghcr.io/ublue-os/bazzite-nvidia:stable
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
+
+FROM scratch AS ctx
+COPY / /
+FROM ghcr.io/ublue-os/bazzite-nvidia:stable
+ARG SET_X=""
 
 RUN --mount=type=bind,from=ctx,src=/,dst=/ctx \
     /ctx/build.sh
