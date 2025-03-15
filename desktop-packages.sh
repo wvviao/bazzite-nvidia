@@ -12,7 +12,7 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
-$DNF install --setopt=install_weak_deps=False -y \
+dnf5 install --setopt=install_weak_deps=False -y \
     code
 
 # SYSEXTS https://github.com/travier/fedora-sysexts
