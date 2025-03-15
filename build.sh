@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/bash
+
 set -ouex pipefail
 
 ### Install packages
@@ -67,6 +68,9 @@ MatchPattern=$SYSEXT-@v-%a.raw
 CurrentSymlink=/var/lib/extensions/$SYSEXT.raw
 EOF
 done
+
+/usr/lib/systemd/systemd-sysupdate update
+systemctl restart systemd-sysext.service
 
 echo "::endgroup::"
 
