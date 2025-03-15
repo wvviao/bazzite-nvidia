@@ -27,6 +27,5 @@ dnf5 install --setopt=install_weak_deps=False -y \
     code \
     resilio-sync
 
-# Simplenote https://github.com/Automattic/simplenote-electron/releases
-/ctx/github-release-install.sh Automattic/simplenote-electron x86_64
+/ctx/simplenote.sh
 /ctx/google-chrome.sh
