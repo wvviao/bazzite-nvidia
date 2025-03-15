@@ -34,17 +34,25 @@ mv /opt{.bak,}
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e '[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc' | tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf5 install -y code
+
+copr_repos=(
+    zeno/scrcpy
+    the4runner/firefox-dev
+)
+
+for repo in "${copr_repos[@]}"; do
+    dnf5 -y copr enable {$repo}
+done
+
+# Layered Applications
+LAYERED_PACKAGES=(
+    scrcpy
+    firefox-dev
+)
+
+dnf5 install --setopt=install_weak_deps=False -y "${LAYERED_PACKAGES[@]}"
+
 echo "::endgroup::"
-
-# Scrcpy
-dnf5 -y copr enable zeno/scrcpy
-dnf5 install -y scrcpy
-dnf5 copr disable zeno/scrcpy
-
-# Firefox Developer Edition
-dnf -y copr enable the4runner/firefox-dev
-dnf -y install firefox-dev
-dnf -y copr disable the4runner/firefox-dev
 
 echo "::group:: ===Cleanup==="
 repos=(
