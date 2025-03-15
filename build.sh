@@ -15,6 +15,8 @@ set -ouex pipefail
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+systemctl enable uupd.timer
+
 echo "::group:: ===Install packages==="
 # Sysexts
 # https://github.com/m2Giles/m2os/blob/0f1d38d1b0374d9a2e638cf79229f544f8a12c18/desktop-packages.sh#L91
