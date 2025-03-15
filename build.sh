@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-set -ouex pipefail
+set ${SET_X:+-x} -eou pipefail
 
 ### Install packages
 # Packages can be installed from any enabled yum repo on the image.
@@ -15,6 +15,8 @@ set -ouex pipefail
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+
+/ctx/test.sh
 
 copr_repos=(
     zeno/scrcpy
