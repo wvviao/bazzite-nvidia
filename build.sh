@@ -16,7 +16,7 @@ set ${SET_X:+-x} -eou pipefail
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-/usr/bin/bash /ctx/test.sh
+/ctx/test.sh
 
 copr_repos=(
     zeno/scrcpy
