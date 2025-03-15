@@ -4,6 +4,7 @@ set ${SET_X:+-x} -eou pipefail
 
 COPR_REPOS=(
     zeno/scrcpy
+    the4runner/firefox-dev
 )
 
 for repo in "${COPR_REPOS[@]}"; do
