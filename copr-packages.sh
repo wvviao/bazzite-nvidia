@@ -15,3 +15,5 @@ COPR_PACKAGES=(
 )
 
 dnf5 install --setopt=install_weak_deps=False -y "${COPR_PACKAGES[@]}"
+
+/ctx/firefox-dev.sh
