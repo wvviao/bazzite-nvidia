@@ -27,6 +27,7 @@ EOF
 SYSEXTS=(
     google-chrome
     vscode
+    firefox
 )
 
 for SYSEXT in "${SYSEXTS[@]}"; do
