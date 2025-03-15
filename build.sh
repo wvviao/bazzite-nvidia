@@ -36,15 +36,20 @@ echo -e '[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf5 install -y code
 echo "::endgroup::"
 
+# Scrcpy
+dnf5 copr enable zeno/scrcpy
+dnf5 install scrcpy
+
 echo "::group:: ===Cleanup==="
 repos=(
-    google-chrome.repo
-    vscode.repo
+    google-chrome
+    vscode
+    scrcpy
 )
 
 for repo in "${repos[@]}"; do
-    if [[ -f "/etc/yum.repos.d/$repo" ]]; then
-        sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/$repo"
+    if [[ -f "/etc/yum.repos.d/{$repo}.repo" ]]; then
+        sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/{$repo}.repo"
     fi
 done
 
