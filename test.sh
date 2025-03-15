@@ -3,4 +3,5 @@
 set ${SET_X:+-x} -eou pipefail
 
 echo "::group:: ===Test==="
+echo "hello"
 echo "::endgroup::"
