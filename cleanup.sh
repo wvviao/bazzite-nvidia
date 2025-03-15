@@ -6,7 +6,6 @@ set ${SET_X:+-x} -eou pipefail
 repos=(
     google-chrome
     vscode
-    resilio-sync
 )
 
 for repo in "${repos[@]}"; do
