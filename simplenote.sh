@@ -7,5 +7,5 @@ mv /opt{,.bak} && mkdir /opt
 /ctx/github-release-install.sh Automattic/simplenote-electron x86_64
 mv /opt/Simplenote /usr/lib/Simplenote
 ln -sf /usr/lib/Simplenote/simplenote /usr/bin/simplenote
-sed -i 's@/opt/Simplenote/simplenote@simplenote@g' "/usr/share/applications/simplenote.desktop"
+sed -i 's@/opt/Simplenote/simplenote@/usr/lib/Simplenote/simplenote@g' "/usr/share/applications/simplenote.desktop"
 mv /opt{.bak,}
