@@ -41,7 +41,7 @@ copr_repos=(
 )
 
 for repo in "${copr_repos[@]}"; do
-    dnf5 -y copr enable "{$repo}"
+    dnf5 -y copr enable ${repo}
 done
 
 # Layered Applications
