@@ -15,12 +15,4 @@ EOF
 dnf5 install --setopt=install_weak_deps=False -y \
     code
 
-# SYSEXTS https://github.com/travier/fedora-sysexts
-install -d -m 0755 -o 0 -g 0 /var/lib/extensions /var/lib/extensions.d /etc/sysupdate.d
-restorecon -RFv /var/lib/extensions /var/lib/extensions.d /etc/sysupdate.d
-SYSEXT="google-chrome"
-RELEASE_TAG="fedora-kinoite-41"
-URL="https://github.com/travier/fedora-sysexts/releases/download/${RELEASE_TAG}/${SYSEXT}.conf"
-curl --silent --location "${URL}" | tee "/etc/sysupdate.d/${SYSEXT}.conf"
-/usr/lib/systemd/systemd-sysupdate update
-systemctl restart systemd-sysext.service
+/ctx/google-chrome.sh
