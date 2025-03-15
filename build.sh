@@ -39,12 +39,17 @@ echo "::endgroup::"
 # Scrcpy
 dnf5 -y copr enable zeno/scrcpy
 dnf5 install -y scrcpy
+dnf5 copr disable zeno/scrcpy
+
+# Firefox Developer Edition
+dnf -y copr enable the4runner/firefox-dev
+dnf -y install firefox-dev
+dnf -y copr disable the4runner/firefox-dev
 
 echo "::group:: ===Cleanup==="
 repos=(
     google-chrome
     vscode
-    scrcpy
 )
 
 for repo in "${repos[@]}"; do
