@@ -15,4 +15,6 @@ EOF
 dnf5 install --setopt=install_weak_deps=False -y \
     code
 
+# Simplenote https://github.com/Automattic/simplenote-electron/releases
+/ctx/github-release-install.sh Automattic/simplenote-electron x86_64
 /ctx/google-chrome.sh
