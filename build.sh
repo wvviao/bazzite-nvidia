@@ -15,6 +15,23 @@ set -ouex pipefail
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+copr_repos=(
+    zeno/scrcpy
+    ublue-os/packages
+)
+
+for repo in "${copr_repos[@]}"; do
+    dnf5 -y copr enable ${repo}
+done
+
+# Layered Applications
+LAYERED_PACKAGES=(
+    scrcpy
+    uupd
+)
+
+dnf5 install --setopt=install_weak_deps=False -y "${LAYERED_PACKAGES[@]}"
+
 systemctl enable uupd.timer
 
 echo "::group:: ===Install packages==="
@@ -50,21 +67,6 @@ MatchPattern=$SYSEXT-@v-%a.raw
 CurrentSymlink=/var/lib/extensions/$SYSEXT.raw
 EOF
 done
-
-copr_repos=(
-    zeno/scrcpy
-)
-
-for repo in "${copr_repos[@]}"; do
-    dnf5 -y copr enable ${repo}
-done
-
-# Layered Applications
-LAYERED_PACKAGES=(
-    scrcpy
-)
-
-dnf5 install --setopt=install_weak_deps=False -y "${LAYERED_PACKAGES[@]}"
 
 echo "::endgroup::"
 
