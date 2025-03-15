@@ -37,8 +37,8 @@ dnf5 install -y code
 echo "::endgroup::"
 
 # Scrcpy
-dnf5 copr enable zeno/scrcpy
-dnf5 install scrcpy
+dnf5 -y copr enable zeno/scrcpy
+dnf5 install -y scrcpy
 
 echo "::group:: ===Cleanup==="
 repos=(
